@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Course/Language Many-to-Many Relationship</h1>
+	<fieldset>
+		<legend>Associate Language(s) with a Course</legend>
+		<form id="add_course_language" action="/course_language" method="post">
+		Course: <select name='cid'>
+			{{#each course3}}
+			  <option value='{{course_id}}'>{{title}}</option>
+			{{/each}}
+		</select>
+		<br>
+		Language:<sup>Multi-select</sup> <select multiple name="languages"> 
+			{{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
+			{{#each language2}}
+			<option value="{{id}}">{{name}}</option>
+			{{/each}}
+		</select><br>
+		<input type="submit" value="Submit">
+		</form>
+	</fieldset>
+	<fieldset> 
+		<legend>List of Courses with their Languages</legend>
+		<table>
+			<thead> 
+				<th>Course</th> 
+				<th>Language</th> 
+			</thead> 
+			<tbody> 
+				{{#each course_with_language}} 
+				<tr> 
+					<td>{{course}}</td> 
+					<td>{{language}}</td> 
+					<td><button onclick="deleteCourseLanguage({{course_id}},{{lid}})">Dissociate</button></td>
+					<td><a href="/course_language/{{id}}">Update</a></td>
+				</tr>
+				{{else}}
+				<b> No course with any topics found! Grant some using the form. </b>
+				{{/each}} 
+			</tbody>
+		</table> 
+	</fieldset>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<script type="text/javascript">
+function validateForm() {
+	console.log("validating");
+    var x = document.forms["update-topic"]["name"].value;
+    if (x == "") {
+        alert("Please fill all required fields");
+        return false;
+    }
+	return true;
+}
+</script>
+
+<html>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Update {{oneTopic.name}}:</h1>
+	<form id="update-topic" action="/topic" method="post">
+		Name: <input type="text" name="name" value="{{oneTopic.name}}"><br>
+	</form>
+	<button onclick="return validateForm() && updateTopic({{oneTopic.id}})">Update</button>
+</html>

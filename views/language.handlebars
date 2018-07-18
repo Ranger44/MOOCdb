@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+function validateForm() {
+	console.log("validating");
+    var x = document.forms["addLanguage"]["name"].value;
+    if (x == "") {
+        alert("Please fill all required fields");
+        return false;
+    }
+	return true;
+}
+</script>
+
+<html>
+<body>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Languages</h1>
+	<fieldset>
+		<legend>Current Languages</legend>
+		<table>
+			<thead>
+				<tr>
+					<td><b>Name</b></td>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each language}}
+				<tr>
+					<td>{{name}}</td>
+					<td><button onclick="deleteLanguage({{id}})">Delete</button></td>
+					<td><a href="/language/{{id}}">Update</a></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</fieldset>
+
+	<form id="addLanguage" onsubmit="return validateForm()" action="/language" method="post">
+		<fieldset>
+			<legend>Create Language</legend>
+			<p>Name: <input type="text" name="name"/></p>
+			<input type="submit"/>
+		</fieldset>
+	</form>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Search for Courses with a Certain Topic</h1>
+	
+	<fieldset>
+		<legend>Search Results</legend>
+		<table>
+			<thead>
+				<tr>
+					<td><b>Title</b></td>
+					<td><b>Provider</b></td>
+					<td><b>Creator</b></td>
+					<td><b>URL</b></td>
+					<td><b>Length Int</b></td>
+					<td><b>Length Unit</b></td>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each searchResult}}
+				<tr>
+					<td>{{title}}</td>
+					<td>{{provider}}</td>
+					<td>{{creator}}</td>
+					<td>{{url}}</td>
+					<td>{{lengthInt}}</td>
+					<td>{{timeUnit}}</td>
+				</tr>
+				{{else}}
+				<p>No courses to display</p>
+				{{/each}}
+			</tbody>
+		</table>
+	</fieldset><br>
+</body>
+</html>

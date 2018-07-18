@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+function validateForm() {
+	console.log("validating");
+    var x = document.forms["update-language"]["name"].value;
+    if (x == "") {
+        alert("Please fill all required fields");
+        return false;
+    }
+	return true;
+}
+</script>
+
+<html>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Update {{oneLanguage.name}}</h1>
+	<form id="update-language" action="/language" method="post">
+		Name: <input type="text" name="name" value="{{oneLanguage.name}}"><br>
+	</form>
+	<button onclick="return validateForm() && updatelanguage({{oneLanguage.id}})">Update</button>
+</html>

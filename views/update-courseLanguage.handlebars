@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Update Course/Languages Many-to-Many Relationship</h1>
+	<fieldset>
+		<legend>Update Association</legend>
+		<form id="updateCourseLanguage" action="/course_language" method="post">
+			Course: <select name="course_selected" id="course-selector"> 
+				{{#each course3}}
+				<option value="{{course_id}}">{{title}}</option>
+				{{/each}}
+				</select><br>
+			Language: <select name="language_selected" id="language-selector"> 
+				{{#each language2}}
+				<option value="{{id}}">{{name}}</option>
+				{{/each}}
+				</select><br>
+		</form>
+	<button onclick="updateCourseLanguage({{oneCourseLanguage.id}})">Update</button>
+	<script defer>selectCourse({{oneCourseLanguage.title}});selectLanguage({{oneCourseLanguage.name}});</script>
+	
+<!--		
+		<form id="update_course_language" action="/course_language" method="post">
+		Update Course: 
+		Course: <select name='cid'>
+			{{#each course3}}
+			  <option value='{{course_id}}'>{{title}}</option>
+			{{/each}}
+		</select>
+		<br>
+		<select name='cid'>
+			  <option value='{{course_id}}'>{{oneCourseLanguage.title}}</option>
+			</select><br>
+		Update Language:<sup>Multi-select</sup> <select multiple name="languages"> 
+			{{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
+			{{#each language2}}
+			<option value="{{language_id}}">{{name}}</option>
+			{{/each}}
+		</select><br>
+		<input type="submit" value="Submit">
+		</form>
+	</fieldset>
+-->
+</body>
+</html>
+<!--
+		<form id="add_course_language" action="/course_language" method="post">
+		Course: <select name='cid'>
+			{{#each course3}}
+			  <option value='{{course_id}}'>{{title}}</option>
+			{{/each}}
+		</select>
+		<br>
+		Language:<sup>Multi-select</sup> <select multiple name="languages"> 
+			{{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
+			{{#each language2}}
+			<option value="{{id}}">{{name}}</option>
+			{{/each}}
+		</select><br>
+		<input type="submit" value="Submit">
+		</form>
+-->

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Update Course/Topics Many-to-Many Relationship</h1>
+	<fieldset>
+		<legend>Update Association</legend>
+		<form id="updateCourseTopic" action="/course_topic" method="post">
+			Course: <select name="course_selected" id="course-selector" value="{{oneCourseTopic.title}}"> 
+				{{#each course2}}
+				<option value="{{course_id}}">{{title}}</option>
+				{{/each}}
+				</select><br>
+			Topic: <select name="topic_selected" id="topic-selector" value="{{oneCourseTopic.name}}"> 
+				{{#each topic2}}
+				<option value="{{id}}">{{name}}</option>
+				{{/each}}
+				</select><br>
+		</form>
+	<button onclick="updateCourseTopic({{oneCourseTopic.id}})">Update</button>
+	<script defer>selectCourse({{oneCourseTopic.title}});selectTopic({{oneCourseTopic.name}});</script>
+</body>
+</html>

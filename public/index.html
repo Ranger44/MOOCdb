@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<h1> MOOCs Database</h1>
+	<div>
+		<h3>Entities</h3>
+		<ul>
+			<li><a href='/course'>Courses (including Search function)</a></li>
+			<li><a href='/language'>Languages</a></li>
+			<li><a href='/topic'>Topics</a></li>
+			<li><a href='/company'>Companies</a></li>
+			<li><a href='/timeUnit'>Time Units</a></li>
+		</ul>
+		
+		<h3>Many-to-many Relationships</h3>
+		<ul>
+			<li><a href='/course_topic'>Courses focus on topics</a></li>
+			<li><a href='/course_language'>Courses use programming languages </a></li>
+			<li>**Each many-to-many relationship will have the functionality to associate and de-
+		associate any rows between the two entities in the relationship**</li>
+		</ul>
+		
+		<h3>One-to-many Relationships</h3>
+		<ul>
+		<h4>**Go to <a href='/course'>Courses</a> to view all one-to-many relationships</h4></li>
+			<li>Course lengths have a time unit</li>
+			<li>Courses are provided by companies</li>
+			<li>Courses are created by companies</li>
+			<li>**Each one-to-many relationship will have the functionality to associate and de-
+		associate any rows between the two entities in the relationship**</li>
+		</ul>
+	</div>
+</body>
+</html>

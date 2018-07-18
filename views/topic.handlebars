@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+function validateForm() {
+	console.log("validating");
+    var x = document.forms["addTopic"]["name"].value;
+    if (x == "") {
+        alert("Please fill all required fields");
+        return false;
+    }
+	return true;
+}
+</script>
+
+<html>
+<body>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Topics</h1>
+	<fieldset>
+		<legend>Current Topics</legend>
+		<table>
+			<thead>
+				<tr>
+					<td><b>Name</b></td>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each topic}}
+				<tr>
+					<td>{{name}}</td>
+					<td><button onclick="deleteTopic({{id}})">Delete</button></td>
+					<td><a href="/topic/{{id}}">Update</a></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</fieldset>
+
+	<form id="addTopic" action="/topic" method="post" onsubmit="return validateForm()">
+		<fieldset>
+			<legend>Create Topic</legend>
+			<p>Name <input type="text" name="name"/></p>
+			<input type="submit"/>
+		</fieldset>
+	</form>
+</body>
+</html>

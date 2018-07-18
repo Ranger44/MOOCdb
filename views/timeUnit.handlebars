@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+function validateForm() {
+	console.log("validating");
+    var x = document.forms["addTimeUnit"]["name"].value;
+    if (x == "") {
+        alert("Please fill all required fields");
+        return false;
+    }
+	return true;
+}
+</script>
+
+<html>
+<body>
+	<p><a href="./index.html">Home</a></p>
+	<h1>Time Units</h1>
+	<fieldset>
+		<legend>Current Time Units</legend>
+		<table>
+			<thead>
+				<tr>
+					<td><b>Name</b></td>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each timeUnit}}
+				<tr>
+					<td>{{name}}</td>
+					<td><button onclick="deleteTimeUnit({{id}})">Delete</button></td>
+					<td><a href="/timeUnit/{{id}}">Update</a></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</fieldset>
+
+	<form id="addTimeUnit" onsubmit="return validateForm()" action="/timeUnit" method="post">
+		<fieldset>
+			<legend>Create Time Unit</legend>
+			<p>Name: <input type="text" name="name"/></p>
+			<input type="submit"/>
+		</fieldset>
+	</form>
+</body>
+</html>

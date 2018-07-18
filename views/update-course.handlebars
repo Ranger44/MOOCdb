@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+function validateForm() {
+	console.log("validating");
+    var x = document.forms["update-course"]["title"].value;
+	var y = document.forms["update-course"]["url"].value;
+    if (x == "" || y == "") {
+        alert("Please fill all required fields");
+        return false;
+    }
+	return true;
+}
+</script>
+
+<html>
+<p><a href="../index.html">Home</a></p>
+<h1>Update {{oneCourse.title}}:</h1>
+<form id="update-course" name="update-course" action="/course" method="post">
+    Title: <input type="text" name="title" value="{{oneCourse.title}}"><br>
+    Provider: <select name="provider" id="company-selector"> 
+        {{#each company}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+	Creator: <select name="creator" id="company-selector"> 
+        {{#each company}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    URL: <input type="url" name="url" value="{{oneCourse.url}}"><br>
+	Length: <input type="number" name="lengthInt" value="{{oneCourse.lengthInt}}"><br>
+	Unit: <select name="timeUnit" id="timeUnit-selector"> 
+        {{#each units}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+</form>
+<button type="submit" onclick="return validateForm() && updateCourse({{oneCourse.course_id}})">Update</button>
+<script defer>selectCompany({{oneCourse.provider}});selectCompany({{oneCourse.creator}});selectUnit({{oneCourse.timeUnit}});</script>
+</html>

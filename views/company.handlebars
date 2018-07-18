@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<script type="text/javascript">
+function validateForm() {
+	console.log("validating");
+    var x = document.forms["addCompany"]["name"].value;
+    if (x == "") {
+        alert("Please fill all required fields");
+        return false;
+    }
+	return true;
+}
+</script>
+
+<html>
+<body>
+	<p><a href="../index.html">Home</a></p>
+	<h1>Companies</h1>
+	<fieldset>
+		<legend>Current Companies</legend>
+		<table>
+			<thead>
+				<tr>
+					<td><b>Name</b></td>
+					<td><b>URL</b></td>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each company1}}
+				<tr>
+					<td>{{name}}</td>
+					<td>{{url}}</td>
+					<td><button onclick="deleteCompany({{id}})">Delete</button></td>
+					<td><a href="/company/{{id}}">Update</a></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</fieldset><br>
+	
+	<form id="addCompany" onsubmit="return validateForm()" action="/company" method="post">
+		<fieldset>
+			<legend>Create Company</legend>
+			<p>Name: <input type="text" name="name"/></p>
+			<p>URL: <input type="text" name="url"/></p>
+			<input type="submit"/>
+		</fieldset>
+	</form>
+</body>
+</html>

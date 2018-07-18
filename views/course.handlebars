@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<script type="text/javascript">
+function validateForm() {
+	console.log("validating");
+    var x = document.forms["addcourse"]["title"].value;
+	var y = document.forms["addcourse"]["url"].value;
+    if (x == "" || y == "") {
+        alert("Please fill all required fields");
+        return false;
+    }
+	return true;
+}
+
+function validateSearchForm() {
+	console.log("validating");
+    var x = document.forms["search_topic"]["searchInput"].value;
+    if (x == "") {
+        alert("Cannot search blank search entry");
+        return false;
+    }
+	return true;
+}
+</script>
+
+<html>
+<body>
+	<p><a href="../../index.html">Home</a></p>
+	<h1>Courses</h1>
+	<form id="search_topic" action="" method="">
+		<fieldset>
+			<legend>Search</legend>
+				<label>Search for Courses by Topic</label>
+				<p>Topic: <input type="text" name="searchInput" id="searchInput"></p>
+				<input type="button" value="Search" onclick="return validateSearchForm() && searchCoursesByTopic()">
+				<!--<a href="/search_topic/{{searchInput}}">Search</a></td>-->
+		</fieldset>
+	</form>
+	<fieldset>
+		<legend>Current Courses</legend>
+		<table>
+			<thead>
+				<tr>
+					<td><b>Title</b></td>
+					<td><b>Provider</b></td>
+					<td><b>Creator</b></td>
+					<td><b>URL</b></td>
+					<td><b>Length Int</b></td>
+					<td><b>Length Unit</b></td>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each course}}
+				<tr>
+					<td>{{title}}</td>
+					<td>{{provider}}</td>
+					<td>{{creator}}</td>
+					<td>{{url}}</td>
+					<td>{{lengthInt}}</td>
+					<td>{{timeUnit}}</td>
+					<td><button onclick="deleteCourse({{course_id}})">Delete</button></td>
+					<td><a href="/course/{{course_id}}">Update</a></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</fieldset><br>
+
+	<form id="addcourse" action="/course" onsubmit="return validateForm()" method="post">
+		<fieldset>
+			<legend>Create Course</legend>
+				<p>Title: <input type="text" name="title"/></p>
+				<p>Provider: <select name="provider">
+					{{#each company}}
+					<option value="{{id}}">{{name}}</option>
+					{{/each}}
+				</select></p>
+				<p>Creator: <select name="creator">
+					{{#each company}}
+					<option value="{{id}}">{{name}}</option>
+					{{/each}}
+				</select></p>
+				<p>URL: <input type="url" name="url"/></p>
+				<p>Length: <input type="number" name="lengthInt"/></p>
+				<p>Length Time Unit: <select name="timeUnit"> 
+					{{#each units}}
+					<option value="{{id}}">{{name}}</option>
+					{{/each}} </select></p>			
+				<input type="submit"/>
+		</fieldset>
+	</form>
+</body>
+</html>
